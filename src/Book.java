@@ -51,7 +51,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Книги: " + title + ", " + author + ", " + pages + ", "+ year;
+        return "Книги: " + title + ", " + author + ", " + pages + ", " + year;
     }
 
     @Override
