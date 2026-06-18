@@ -1,4 +1,4 @@
-
+import java.util.Objects;
 
 public class Book {
     String title;
@@ -51,6 +51,18 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book: " + title + ", " + author + ", " + pages + ", "+ year;
+        return "Книги: " + title + ", " + author + ", " + pages + ", "+ year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(title, book.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(title);
     }
 }

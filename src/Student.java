@@ -3,10 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -51,7 +48,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student: " + name + ", " + lastName + ", " + books;
+        return "Студент: " + name + ", " + lastName + ", " + books;
     }
 
     public static void main(String[] args) throws IOException {
@@ -62,10 +59,18 @@ public class Student {
 
         student.stream()
                 .peek(st -> System.out.println(st.getName() + " " + st.getLastName()))
+                .peek(b -> System.out.println(b.getBooks()))
                 .filter(user -> user.getBooks() != null)
                 .flatMap(user -> user.getBooks().stream())
                 .toList()
-                .forEach(System.out::println);
+                .stream().sorted(Comparator.comparingInt(Book::getPages))
+                .distinct()
+                .filter(book -> book.getYear() > 2000)
+                .limit(2)
+                .peek(y -> System.out.println(y.getYear()))
+                .findAny()
+                .ifPresentOrElse(y -> System.out.println(y.getYear()), () -> System.out.println("Такой книги нет"));
+
 
     }
 }
