@@ -50,11 +50,6 @@ public class Book {
     }
 
     @Override
-    public String toString() {
-        return "Книги: " + title + ", " + author + ", " + pages + ", " + year;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
