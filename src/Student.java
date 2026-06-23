@@ -66,7 +66,8 @@ public class Student {
                     .filter(book -> book.getYear() > 2000)
                     .limit(3)
                     .findAny()
-                    .ifPresentOrElse(book -> System.out.println(book.getYear()), () -> System.out.println("Такой книги нет."));
+                    .ifPresentOrElse(book -> System.out.println(book.getYear()),
+                            () -> System.out.println("Такой книги нет"));
 
         } catch (IOException e) {
             System.out.println("Ошибка чтения файла." + e.getMessage());
